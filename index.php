@@ -1,22 +1,25 @@
 <?php
-// cms/index.php
+// index.php
 
-session_start();
-
-require_once __DIR__ . '/app/core/Config.php';
+// Load the Autoloader
 require_once __DIR__ . '/app/core/Autoloader.php';
 
-\App\Core\Autoloader::register();
+// Register the Autoloader
+app\core\Autoloader::register();
 
-use App\Core\Router;
+// Load the Config
+require_once __DIR__ . '/app/core/Config.php';
 
-$router = new Router();
+// Initialize the Router
+$router = new app\core\Router();
 
 // Register routes
 $router->addRoute('/', 'app\controllers\FrontendController', 'index');
 $router->addRoute('/about', 'app\controllers\FrontendController', 'about');
 $router->addRoute('/admin', 'app\controllers\AdminController', 'dashboard');
 $router->addRoute('/admin/login', 'app\controllers\AdminController', 'login');
+$router->addRoute('/bellkuhlo_Admin/cms/index.php', 'app\controllers\FrontendController', 'index');
 
-// Execute the router
+// Execute the Router
 $router->execute();
+
